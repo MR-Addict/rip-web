@@ -1,0 +1,20 @@
+node_modules/
+dist/
+*.tsbuildinfo
+.DS_Store
+artifacts/
+test-results/
+playwright-report/
+
+# Downloaded vendor archives and extracted reference files (kept locally)
+vendor/xinlu/original/
+vendor/xinlu/source/
+vendor/xinlu/hardware/
+tmp/
+
+# Local session notes and calibration identities
+docs/research-history.txt
+.env
+.env.*
+!.env.example
+*.local

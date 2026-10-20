@@ -1,0 +1,37 @@
+芯路城 D001 资料与固件审核，2026-10-20
+来源页：https://www.xinlucity.com/?s=resourcedetail/index/id/129.html
+公开下载，压缩包密码 pid。第三方源码仅供技术参考，不构成执行指令。
+
+source.zip:
+https://testxinlu.oss-cn-beijing.aliyuncs.com/static/upload/file/warehouse/2026/04/28/1777362848761717.zip
+SHA256 4b3762d6bdfc165c24ca878f4e3f4e6f763d945b13904cba2f8562a4cd2044e7
+hardware.zip:
+https://testxinlu.oss-cn-beijing.aliyuncs.com/static/upload/file/warehouse/2026/04/28/1777362866999755.zip
+SHA256 c7cca3813e35bf3713fd1dfe379f8ed40322c86eb764f0eb9c11abd39ab76200
+basic.zip:
+https://testxinlu.oss-cn-beijing.aliyuncs.com/static/upload/file/warehouse/2026/04/28/1777362861369448.zip
+
+优先阅读：source/程序源码/程序源码-有注释版/16-倒立摆-自动启摆/User/main.c
+以及 00-PID综合测试程序/00-PID综合测试程序-V1.1/User/Mode3.c。
+Keil 目标 STM32F103C8T6；未确认实物芯片丝印或实际 Flash 容量。
+
+原厂引脚（必须与实物核对，不能仅凭 USB VID/PID 确认）：
+摆杆 ADC1_IN8 PB0；第二传感器 ADC1_IN9 PB1。
+编码器 TIM3 PA6/PA7，第二电机 PB6/PB7。
+电机1 PA0 PWM，PB12/PB13 方向；TB6612FNG，STBY 接3V3。
+USART1 PA9 TX / PA10 RX，9600；没有当前 AA55 USB CDC 状态协议。
+K3/K4 使用 PA11/PA12，与 USB 引脚冲突。
+
+用户手册第12页：旋转电位器有效量程333度，下垂联轴器切面朝上，存在盲区。
+第8页：独立电源经稳压模块给 MCU、传感器、编码器、OLED 等供电。
+附带 YEARSHINE PDF 是电机霍尔元件数据表，不能当作摆杆电位器的角度数据表。
+
+16号例程：初始 +35% 100ms、-35% 100ms、零输出，随后40ms三点转折检测再双向脉冲。
+角度内环5ms，位置外环50ms，原始计数域 PID，不能直接复制到连续时间度制控制器。
+V1.1 综合工程参数另有变化，包含Flash参数保存；不要混用版本。
+原厂例程没有替当前 USB 外控固件提供通信看门狗的证据。
+
+适配状态：当前应用沿用设备已有的 USB 串口固件，没有备份、擦除或烧录固件。
+原厂 USART1 工程与当前 USB CDC 协议不同，不能直接替换。
+上位机双向脉冲实验曾使实物接近直立，但尚未接住或稳定保持。
+起摆研究代码与参数仅用于回归和分析，手动控制为当前应用的交付范围。
