@@ -10,7 +10,8 @@
     "test": "vitest run",
     "test:e2e": "playwright test",
     "lab": "tsx tools/lab.ts",
-    "check:node": "tsc -p tsconfig.node.json"
+    "check:node": "tsc -p tsconfig.node.json",
+    "build:pages": "npm run build -- --base=/rip-web/"
   },
   "dependencies": {
     "@fontsource/ibm-plex-mono": "^5.3.0",

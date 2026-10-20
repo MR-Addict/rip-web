@@ -20,6 +20,20 @@ npm run build
 npm run preview
 ```
 
+## GitHub Pages
+
+在线地址：<https://mr-addict.github.io/rip-web/>。
+
+推送到 `main` 后，GitHub Actions 自动构建 `dist/` 并部署到 Pages；也可手动运行「Deploy GitHub Pages」。仓库 Pages 的发布源使用 GitHub Actions。部署构建命令：
+
+```sh
+npm run build:pages
+```
+
+该命令将静态资源和 Worker 路径设为 `/rip-web/`，本地开发路径保持不变。无需部署 Python 或 Node 服务，Pages 只托管静态文件。
+
+在线页面可以通过 Web Serial 控制接在当前电脑上的装置：使用桌面 Chrome，点击「连接设备」并重新授权串口。localhost 的串口授权不会自动转移到线上域名。先断开本地页面或 Node 工具以释放串口；网页不会自动连接或开始动作。HTTPS 不代表远程控制，装置必须连接到打开网页的电脑。
+
 ## 使用
 
 1. 连接 USB 和装置独立电源，点击「连接设备」，选择并授权串口，再建立连接。默认 115200 / 8N1；收到有效状态帧后显示已连接，连接时发送零 PWM。
